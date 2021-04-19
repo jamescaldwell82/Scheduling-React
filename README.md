@@ -18,7 +18,7 @@ Testing Functionality
 Testing was mainly done through the Firebase emulators for Firestore and Function logs. I also learned to use the CLI build:watch script in the functions project. Finally I utilized Google Browser's React DevTools extension to see how data was being passed into the UI and between components.
 
 V2 Functionality
- - Authentication - I plan to integrate Google Authentication and allow this application to be a little bit more dynamic and usable. Right now, the functionality is there per the Mininum Viable Product laid out in the persona. However while it showcases mimimal filtered data-driven views, the UI/UX still feel quite limiting due to the current mock-auth setup.
+ - Authentication - I plan to integrate Google Authentication and allow this application to be a little bit more dynamic and usable. Right now, the functionality is there per the Mininum Viable Product laid out in the prompt. However while it showcases mimimal filtered data-driven views, the UI/UX still feel quite limiting due to the current mock-auth setup.
 - Function Triggers - After creating the original functions, I found documentation on Firebase Function triggers that you can set up for handling creations and updates of data in Firestore. I would like to spend some time integrating this functionality utilizing those funcitons that help extend the database.
 - This is a very basic (Minimum Viable Product) for a coding challenge, with very basic authentication setups and there are some components that I would continue to refactor to make the UI a bit more reusable and scalable.
 
