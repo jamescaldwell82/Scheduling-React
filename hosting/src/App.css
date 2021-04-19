@@ -8,6 +8,31 @@ body {
   pointer-events: none;
 }
 
+.site-container {
+  min-height: 100vh;
+  background: linear-gradient(to right, rgba(50,50,50,.95), rgba(221, 194, 76, 0.82), rgba(255,255,255,1));
+}
+
+.site-container img.background {
+  position: fixed;
+  z-index:-1;
+  top: 0;
+  left: 0;
+  height: 150%;
+}
+
+.login h1{
+  font-size: 4em;
+  margin-top: 25vh;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.login p {
+  font-size:2em;
+  font-style: italic;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

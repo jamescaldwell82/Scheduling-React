@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { loadUsers, getUser} from './sdk';
 import Dashboard from './components/Dashboard';
+import image from './images/background.jpg';
 
 function App() {
   const [user, setUser] : any = useState();
@@ -20,7 +21,6 @@ function App() {
         setLogin(true);
       }
     });
-  
   }
 
   function logOut(){
@@ -30,22 +30,24 @@ function App() {
     setEmail('');
   }
 
-
   return (
     <div className="site-container">
+      <img src={image} alt="Image of Calendar for planning" className="background"/>
       {/*Below I check to see if login is false. If it is, I conditionally render the login functionality.*/}
       {!login &&
-        <section className="login container p-4">
-
-          <div className="form-group">
+        <section className="login container p-4 text-center">
+          <h1>Welcome to Appt</h1>
+          <p>Making scheduling easy...</p>
+          <hr/>
+          <div className="col-8 offset-2">
             <input className="form-control" placeholder="Type 'User123' || 'User345' || User567" type="text" name="name"
               onChange={e => setUser(e.target.value)}
             />
           </div>
-
+          <br/>
           <div className="form-group">
-            <button className="btn btn-primary" type="submit" onClick={() => signIn(user)}>Sign In</button>
-            <button className="btn btn-warning" onClick={() => loadUsers()}>Load Sample Users</button>
+            <button className="btn btn-primary m-1 p-2" type="submit" onClick={() => signIn(user)}>Sign In</button>
+            <button className="btn btn-info m-1 p-2" onClick={() => loadUsers()}>Load Sample Users</button>
           </div>
           
         </section>
