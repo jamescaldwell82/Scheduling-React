@@ -11,13 +11,17 @@ function MeetingCreate(props : any) {
  
     const [inviteMessage, setInviteMessage] = useState('');
     const [meetings, setMeetings] = useState(props.meetings);
+    const [load, setLoad] = useState(props.load);
 
     function handleSubmit(e : any) {
         e.preventDefault();
         console.log(meetingName);
         console.log(recipientId);
         addMeeting(meetingName, isAccepted, meetingToken, recipientId, props.user);
+        props.showMeetings();
     }
+
+
     return(
         <form onSubmit={(e) => handleSubmit(e)} className="p-3">
             <input className="form-control" placeholder="Meeting Name" onChange={(e) => setMeetingName(e.target.value)}/>

@@ -6,15 +6,17 @@ function MeetingInvites(props: any) {
 
     function deleteMeetingRequest(meetingToken : any) {
         deleteMeeting(meetingToken);
+        props.showMeetings();
     }
 
     function acceptMeeting(id : string){
         console.log('Update the meeting!');
         updateMeeting(id);
+        props.showMeetings();
     }
     return (
         <div className="p-2">
-            {props.meetings[0] != null && props.meetings.filter((x: any) => (!x.meeting.isAccepted) && (x.meeting.recipientId == props.user)).map((meetings: any, index: any) => (
+            {props.meetings.filter((x: any) => (!x.meeting.isAccepted) && (x.meeting.recipientId == props.user)).map((meetings: any, index: any) => (
                 <div className="card text-center rounded m-2" key={index}>
                     <div className="card-header bg-danger text-white">
                         <h2>{meetings.meeting.meetingName}</h2>

@@ -1,9 +1,12 @@
 import { render } from '@testing-library/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function MeetingReader(props : any){
+    useEffect(()=>{
+        props.showMeetings();   
+       }, []);
     return(
-        <div className="col-4 offset-1">
+        <div className="col-5 offset-1 p-0">
         {props.meetings.filter((x: any) => x.meeting.isAccepted).map((meetings: any, index: any) => (
             <div className="card text-center rounded m-2 border-dark" key={index}>
                 <div className="card-header bg-dark text-white">
