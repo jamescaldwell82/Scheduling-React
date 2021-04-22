@@ -46,8 +46,8 @@ export async function updateMeeting(meetingToken : string) {
     return res;
 }
 
-export async function addMeeting(meetingName : string, isAccepted: boolean, meetingToken: string, recipientId: string, senderId: string){
-    const res = await firebaseFunctions.httpsCallable('createMeeting')({meetingName, isAccepted, meetingToken, recipientId, senderId});
+export async function addMeeting(meetingName : string, isAccepted: boolean, meetingToken: string, meetingDateTime: string, recipientId: string, senderId: string){
+    const res = await firebaseFunctions.httpsCallable('createMeeting')({meetingName, isAccepted, meetingToken, meetingDateTime, recipientId, senderId});
     return res;
     }
 

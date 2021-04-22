@@ -59,6 +59,7 @@ export const loadMeetings = functions.https.onCall(async (data, context) => {
     await db.doc(`Meetings/meeting-${Date.now()}`).set({
         meetingName: 'Board Meeting',
         meetingToken: `${Date.now()}`,
+        meetingDateTime: `${new Date('2021/05/02 11:00')}`,
         senderId: 'jcaldwell',
         recipientId: 'tkelce',
         isAccepted: true
@@ -67,6 +68,7 @@ export const loadMeetings = functions.https.onCall(async (data, context) => {
     await db.doc(`Meetings/meeting-${Date.now()}`).set({
         meetingName: 'Sales Meeting',
         meetingToken: `${Date.now()}`,
+        meetingDateTime: `${new Date('2021/04/30 14:00')}`,
         senderId: 'jcaldwell',
         recipientId: 'pmahomes',
         isAccepted: true
@@ -75,6 +77,7 @@ export const loadMeetings = functions.https.onCall(async (data, context) => {
     await db.doc(`Meetings/meeting-${Date.now()}`).set({
         meetingName: 'Staff Meeting',
         meetingToken: `${Date.now()}`,
+        meetingDateTime: `${new Date('2021/06/06 8:30')}`,
         senderId: 'tkelce',
         recipientId: 'pmahomes',
         isAccepted: false
@@ -83,6 +86,7 @@ export const loadMeetings = functions.https.onCall(async (data, context) => {
     await db.doc(`Meetings/meeting-${Date.now()}`).set({
         meetingName: 'Wideouts Meeting',
         meetingToken: `${Date.now()}`,
+        meetingDateTime: `${new Date('2021-04-30T09:00')}`,
         senderId: 'jcaldwell',
         recipientId: 'tkelce',
         isAccepted: false
@@ -92,8 +96,8 @@ export const loadMeetings = functions.https.onCall(async (data, context) => {
 
 //This function is called in the useEffect() in the Dashboard Component to keep track of the state of meetings and ensure that the user sees those meetings in realtime.
 export const getMeetings = functions.https.onCall(async (data, context) => {
-    const meetingsInvitedQuerySnapshot = await db.collection('Meetings').where("recipientId", "==", data.user).get();
-    const meetingsSentQuerySnapshot = await db.collection('Meetings').where('senderId', '==', data.user).get();
+    const meetingsInvitedQuerySnapshot = await db.collection('Meetings').where("recipientId", "==", data.user).orderBy("meetingDateTime").get();
+    const meetingsSentQuerySnapshot = await db.collection('Meetings').where('senderId', '==', data.user).orderBy("meetingDateTime").get();
     const meetings : any[] = [];
     await meetingsInvitedQuerySnapshot.forEach((doc) => {        
         meetings.push({
@@ -129,6 +133,7 @@ export const createMeeting = functions.https.onCall(async (data, context) => {
     await db.doc(`Meetings/meeting-${Date.now()}`).set({
         meetingName: data.meetingName,
         meetingToken: `${Date.now()}-${data.senderId}`,
+        meetingDateTime: `${new Date(data.meetingDateTime)}`,
         senderId: data.senderId,
         recipientId: data.recipientId,
         isAccepted: false
@@ -144,7 +149,6 @@ export const deleteMeeting = functions.https.onCall(async (data, context)=> {
         //const accept = meeting.data().isAccepted;
         meeting.ref.delete();
         console.log('Delete Success');
-
     });
     return {text: 'This is now functional!'};
 });

@@ -5,6 +5,7 @@ function MeetingReader(props : any){
     useEffect(()=>{
         props.showMeetings();   
        }, []);
+
     return(
         <div className="col-5 offset-1 p-0">
         {props.meetings.filter((x: any) => x.meeting.isAccepted).map((meetings: any, index: any) => (
@@ -13,6 +14,7 @@ function MeetingReader(props : any){
                     <h2>{meetings.meeting.meetingName}</h2>
                 </div>
                 <div className="card-body">
+                <p><span className="font-weight-bold">Date/Time: <br/></span>{`${new Date(meetings.meeting.meetingDateTime).toLocaleDateString()}`} {`${new Date(meetings.meeting.meetingDateTime).toLocaleTimeString()}`}</p>
                     <p><span className="font-weight-bold">From: </span>{meetings.meeting.senderId}</p>
                     <p><span className="font-weight-bold">To: </span>{meetings.meeting.recipientId}</p>
                 </div>

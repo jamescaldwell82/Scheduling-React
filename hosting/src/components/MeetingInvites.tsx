@@ -5,14 +5,12 @@ import { updateMeeting, deleteMeeting } from '../sdk';
 function MeetingInvites(props: any) {
 
     function deleteMeetingRequest(meetingToken : any) {
-        deleteMeeting(meetingToken);
-        props.showMeetings();
+        deleteMeeting(meetingToken).then(()=> props.showMeetings());
     }
 
     function acceptMeeting(id : string){
         console.log('Update the meeting!');
-        updateMeeting(id);
-        props.showMeetings();
+        updateMeeting(id).then(() => props.showMeetings());
     }
     return (
         <div className="p-2">
@@ -22,6 +20,7 @@ function MeetingInvites(props: any) {
                         <h2>{meetings.meeting.meetingName}</h2>
                     </div>
                     <div className="card-body">
+                    <p><span className="font-weight-bold">Date/Time: <br/></span>{`${new Date(meetings.meeting.meetingDateTime).toLocaleDateString()}`} {new Date(meetings.meeting.meetingDateTime).toLocaleTimeString()}</p>
                         <p><span className="font-weight-bold">From: </span>{meetings.meeting.senderId}</p>
                         <p><span className="font-weight-bold">To: </span>{meetings.meeting.recipientId}</p>
                     </div>

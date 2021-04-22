@@ -22,10 +22,6 @@ function Dashboard(props: any) {
     }
 
     function showMeetings(){
-      
-        getMeetings(props.user).then(data => {
-            setMeetings(data);
-        });
         setLoad(!load);
     }
 
